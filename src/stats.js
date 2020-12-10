@@ -2,8 +2,7 @@ var request = require('request');
 var logger = require('./logger');
 var config = require('./config');
 
-// const server = 'https://remote.devtools.rocks/'
-const server = 'http://' + config.domain + ':' + config.port + '/';
+const server = 'http://' + config.server + '/';
 
 // STATS
 function reportStats() {

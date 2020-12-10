@@ -19,13 +19,10 @@ so it can be debugged remotely via Chrome DevTools.
 
 A full detailed blog post can be found here [https://kenneth.io/blog/2015/06/16/use-chrome-devtools-to-debug-your-users-browser-remotely-with-browserremote/](https://kenneth.io/blog/2015/06/16/use-chrome-devtools-to-debug-your-users-browser-remotely-with-browserremote/)
 
+### 使用方法
+1. 开发者 搭建HttpServer和WebsocketServer, 执行node server.js，生成【Websocket网址】
+2. 用户 安装devtools-extension插件，打开任意网页【www.baidu.com】, 点击插件图标，浏览器显示【“DevTools Remote”已开始调试此浏览器】表示开启调试成功。然后发送已被复制到剪贴板的调试id秘钥【如1b6d7893-87c3-4d22-9abd-9c936235d83e】给开发者。
+3. 开发者 打开新页面，使用调试id秘钥输入devtoolsFrontendUrl开启调试，如devtools://devtools/bundled/inspector.html?ws=【Websocket网址】/devtools/page/【调试id秘钥】
 
-### 使用步骤
-1. 开发者 开启Server和Websocket, 执行node server.js
-2. 用户 安装插件，打开网页www.baidu.com, 点击插件icon开启调试，【打开background.html插件调试background视图，复制devtoolsFrontendUrl地址】
-3. 开发者，打开新页面，输入devtoolsFrontendUrl开启调试，如【devtools://devtools/bundled/inspector.html?ws=localhost:8090/devtools/page/04886f88-f23a-48cf-b1da-49c6f4e45a35】
-【已解决】已知问题：多次点击icon后，chrome.debugger.attach报错，Unchecked runtime.lastError: Debugger is not attached to the tab with id: 78. 需要重启插件解决。
-
-### Security
-
-**NOTICE**: This project is highly experimental, and shouldn't be used in ANY production-like environment, as there's little security provided by a uniquely generated session. This session can in theory be guessed, and therefore allow a third party to tag along.
+### 已知问题
+【已解决】多次点击插件图标后，chrome.debugger.attach报错，“Unchecked runtime.lastError: Debugger is not attached to the tab with id: 78.” 需要重启插件解决。

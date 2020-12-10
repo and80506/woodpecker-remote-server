@@ -1,6 +1,6 @@
 var express = require('express');
 var http = require('http');
-var uuid = require('node-uuid');
+var { v4: uuidv4 } = require('uuid');
 var logger = require('./logger');
 var config = require('./config');
 
@@ -54,6 +54,7 @@ var server = http.Server(app);
 server.listen(app.get('port'), function () {
     logger.info('http.listening');
     logger.info('- listening on port %d in %s mode', app.get('port'), app.settings.env);
+    logger.info('- serverUrl is %s', config.server);
 });
 
 // Socket IO for Chrome Extension
@@ -62,7 +63,7 @@ logger.info('socket.booting');
 // 处理和Chrome扩展的通信
 var io = require('socket.io')(server);
 io.sockets.on('connection', function (socket) {
-    var sessionId = uuid();
+    var sessionId = uuidv4();
 
     logger.info('socket.connection', sessionId);
 
@@ -102,21 +103,18 @@ io.sockets.on('connection', function (socket) {
     socket.on('hello', function (data) {
         logger.info('socket.hello', data);
 
-        var webSocketUrl = config.domain + ':' + app.get('port') + '/devtools/page/' + sessionId;
+        var webSocketUrl = config.server + '/devtools/page/' + sessionId;
 
         targets[sessionId].push({
             description: '',
             // 旧的已失效，devtoolsFrontendUrl: '/devtools/devtools.html?ws=' + webSocketUrl,
             // 新的参考 devtools://devtools/bundled/inspector.html?ws=localhost:8090/devtools/page/1ed6da22-398f-4337-a0d5-befb11a91fe3
             devtoolsFrontendUrl: 'devtools://devtools/bundled/inspector.html?ws=' + webSocketUrl,
-            devtoolsUrl:
-                'chrome-devtools://devtools/remote/serve_rev/@8925c3c45f3923bc78ffc841842183cc592a0143/inspector.html?wss=' +
-                webSocketUrl +
-                '&remoteFrontend=true&dockSide=unlocked&experiments=true',
-            id: uuid(),
+            id: uuidv4(),
             title: data.title,
             type: 'page',
             url: data.url,
+            sessionId: sessionId,
             webSocketDebuggerUrl: 'ws://' + webSocketUrl,
         });
 
