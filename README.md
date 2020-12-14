@@ -19,5 +19,5 @@ gif图片比较大，请耐心等候。
 
 ### 使用方法
 1. 开发者 搭建HttpServer和WebsocketServer, 执行node server.js，获取可用网址[Websocket网址]
-2. 用户安装[woodpecker-remote](http://todo.com)插件，打开任意网页【如www.google.com】, 点击插件图标，浏览器显示【“Woodpecker Remote”已开始调试此浏览器】表示开启远程调试成功。然后发送已被复制到剪贴板的调试id秘钥【如1b6d7893-87c3-4d22-9abd-9c936235d83e】给开发者。
+2. 用户安装[woodpecker-remote](https://chrome.google.com/webstore/detail/woodpecker-remote/aaacikliopjgcgmmkcjcghfipdinecpi?hl=zh-CN&authuser=0)插件，打开任意网页【如www.google.com】, 点击插件图标，浏览器显示【“Woodpecker Remote”已开始调试此浏览器】表示开启远程调试成功。然后发送已被复制到剪贴板的调试id秘钥【如1b6d7893-87c3-4d22-9abd-9c936235d83e】给开发者。
 3. 开发者打开新页面，使用调试id秘钥输入Devtools页面【如devtools://devtools/bundled/inspector.html?ws=[Websocket网址]/devtools/page/[调试id秘钥]】进行调试。
