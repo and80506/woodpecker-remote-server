@@ -1,25 +1,25 @@
 {
-  "name": "woodpecker-remote-server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "src/server.js",
-  "scripts": {
-    "start": "node src/server.js",
-    "stats": "node src/stats.js",
-    "test": "standard"
-  },
-  "author": "and80506@163.com",
-  "license": "MIT",
-  "devDependencies": {
-    "standard": "^3.0.0"
-  },
-  "dependencies": {
-    "express": "^4.12.3",
-    "guid": "0.0.12",
-    "request": "^2.67.0",
-    "socket.io": "^1.3.5",
-    "uuid": "^8.3.2",
-    "winston": "^1.0.0",
-    "ws": "yarax/ws"
-  }
+    "name": "woodpecker-remote-server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "src/server.js",
+    "scripts": {
+        "start": "node src/server.js",
+        "stats": "node src/stats.js",
+        "test": "standard"
+    },
+    "author": "and80506@163.com",
+    "license": "MIT",
+    "devDependencies": {
+        "standard": "^3.0.0"
+    },
+    "dependencies": {
+        "express": "^4.12.3",
+        "guid": "0.0.12",
+        "request": "^2.67.0",
+        "socket.io": "^1.3.5",
+        "uuid": "^8.3.2",
+        "winston": "^1.0.0",
+        "ws": "^1.1.5"
+    }
 }
